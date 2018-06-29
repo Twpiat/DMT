@@ -1,7 +1,7 @@
 import xlrd
 
 # PODAJ NAZWĘ PLIKU DMT
-ExcelFileName = 'DMT002 128.xlsx'
+ExcelFileName = '../DMT002 128.xlsx'
 
 # PODAJ NAZWĘ BAZY DANYCH
 DatabaseName = "ET_ZT7_DEF"
