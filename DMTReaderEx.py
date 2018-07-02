@@ -103,7 +103,7 @@ def przelec_zakladke(ktora_zakladka):
         if table_field not in table_dict[table_name]:
             table_dict[table_name].append(table_field)
 
-    print('TD:',table_dict)
+    #print('TD:',table_dict)
 
 
     # stworzenie słownika wymaganych pól w danej tabeli
@@ -124,18 +124,54 @@ def przelec_zakladke(ktora_zakladka):
 
 
     for key in table_dict.keys():
-        output_msg += key + " = \n"
-        output_msg += str(table_dict[key]) + "\n"
+        if key not in output_msg:
+            output_msg += key + " = \n"
+            output_msg += str(table_dict[key]) + "\n"
 
 
 
 
 
-    print("Ostatecznie:", table_dict)
+    #print("Ostatecznie:", table_dict)
+
+def generuj_sql():
+    global table_dict, required_data
+
+
+    for key in table_dict.keys():
+        counter = 0
+        str_req = ", ".join(required_data[key])
+        for field in table_dict[key]:
+            counter += 1
+            output_msg = "--" + str(key) + "/" + str(field[0])\
+                            + " Zapytanie " + str(counter) + " / " + str(len(table_dict[key])) + ":\n"
+            output_msg += "SELECT MAX(LENGTH(TRIM("+str(field[0]) + "))) AS " + str(field[0]) +\
+                  "_" + str(field[2]) + " FROM " + DatabaseName + "." + str(key) + "\n\n"
+
+            print(output_msg)
+
+
+        if counter == len(table_dict[key]):
+            output_msg += "--Zapytanie o REQ = Y:\nSELECT DISTINCT "
+            output_msg += str_req
+            output_msg += "\n\tFROM " + DatabaseName + "." + str(key) + "\nWHERE"
+            for field in required_data[key]:
+                if field != required_data[key][len(required_data[key]) - 1]:
+                    output_msg += "\n\t" + field + " IS NULL OR"
+                else:
+                    output_msg += "\n\t" + field + " IS NULL;\n"
+
+            print(output_msg)
+
+        #file.write(output_msg)
+
 
 
 przelec_zakladke(6)
 przelec_zakladke(7)
-print('Req:', required_data)
-print('RD:',result_dict)
-print(output_msg)
+# print('Slownik:', table_dict)
+# print('Req:', required_data)
+# print('RD:',result_dict)
+# print(output_msg)
+
+generuj_sql()
