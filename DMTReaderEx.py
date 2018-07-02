@@ -4,7 +4,7 @@ import xlrd
 ExcelFileName = '../DMT002 128.xlsx'
 
 # PODAJ NAZWĘ BAZY DANYCH
-DatabaseName = "ET_ZT7_DEF"
+DatabaseName = "ET_ZT8_DEF"
 
 # PODAJ NR PIERWSZEGO ISTOTNEGO WIERSZA
 # (NR LINII EXCELA)
@@ -136,22 +136,28 @@ def przelec_zakladke(ktora_zakladka):
 
 def generuj_sql():
     global table_dict, required_data
+    file = open("../EX SQL wsad.txt", "w")
 
-
+    print(required_data.keys())
     for key in table_dict.keys():
         counter = 0
-        str_req = ", ".join(required_data[key])
+        try:
+            if key in required_data.keys():
+
+                str_req = ", ".join(required_data[key])
+        except KeyError:
+            print("Wybuchło", required_data)
         for field in table_dict[key]:
             counter += 1
             output_msg = "--" + str(key) + "/" + str(field[0])\
                             + " Zapytanie " + str(counter) + " / " + str(len(table_dict[key])) + ":\n"
             output_msg += "SELECT MAX(LENGTH(TRIM("+str(field[0]) + "))) AS " + str(field[0]) +\
-                  "_" + str(field[2]) + " FROM " + DatabaseName + "." + str(key) + "\n\n"
+                  "_" + str(field[2]) + " FROM " + DatabaseName + "." + str(key) + ";\n\n"
 
-            print(output_msg)
+            file.write(output_msg)
 
 
-        if counter == len(table_dict[key]):
+        if counter == len(table_dict[key]) and key in required_data:
             output_msg += "--Zapytanie o REQ = Y:\nSELECT DISTINCT "
             output_msg += str_req
             output_msg += "\n\tFROM " + DatabaseName + "." + str(key) + "\nWHERE"
@@ -161,17 +167,17 @@ def generuj_sql():
                 else:
                     output_msg += "\n\t" + field + " IS NULL;\n"
 
-            print(output_msg)
 
-        #file.write(output_msg)
+        file.write(output_msg)
+    file.close()
+    print("Plik wsadowy wygenerowany.")
 
 
+def read_excel():
+    for i in range(MinZakladka-1, MaxZakladka):
+        print("Przetwarzam zakladke nr", i+1)
+        przelec_zakladke(i)
 
-przelec_zakladke(6)
-przelec_zakladke(7)
-# print('Slownik:', table_dict)
-# print('Req:', required_data)
-# print('RD:',result_dict)
-# print(output_msg)
 
+read_excel()
 generuj_sql()
