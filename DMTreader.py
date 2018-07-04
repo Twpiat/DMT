@@ -1,10 +1,10 @@
 import xlrd
 
 # PODAJ NAZWĘ PLIKU DMT
-ExcelFileName = 'DMT051 155.xlsx'
+ExcelFileName = '../DMT002 133.xlsx'
 
 # PODAJ NAZWĘ BAZY DANYCH
-DatabaseName = "ET_ZT7_DEF"
+DatabaseName = "KT_ZT8_CBS"
 
 # PODAJ NR PIERWSZEGO ISTOTNEGO WIERSZA
 # (NR LINII EXCELA)
@@ -23,7 +23,7 @@ ListColumns = (8, 10, 11, 12, 13)
 # UKRYTYCH ZAKŁADEK I JEŚLI SĄ, SKASUJ JE.
 
 MinZakladka = 6
-MaxZakladka = 20
+MaxZakladka = 33
 
 
 
@@ -102,7 +102,7 @@ def przelec_zakladke(ktora_zakladka):
             output_msg += "'" + pole + "', "
         output_msg += "\n]\n"
 
-    file = open("wsad_" + zakladka + ".py", "w")
+    file = open("../wsad_" + zakladka + ".py", "w")
     file.write(output_msg)
     file.close()
     print("Przetwarzanie", zakladka, "zakończone.")
@@ -113,7 +113,7 @@ def przelec_zakladke(ktora_zakladka):
 def generuj_sql(tabela, nazwa, tabela_req):
     licznik = 0
     str_req = ", ".join(tabela_req)
-    file = open("SQL wsad " + nazwa + ".txt", "w")
+    file = open("../SQL wsad " + nazwa + ".txt", "w")
     for lista in tabela:
         licznik += 1
 
@@ -165,7 +165,7 @@ def przelec_excela():
     print("Wygeneruj:\n"+output_args)
 
 
-#przelec_excela()
+przelec_excela()
 #przelec_zakladke(2)
 
 # *************** CZYTAJ TUTAJ *************** CZYTAJ TUTAJ ***************
@@ -191,8 +191,37 @@ def przelec_excela():
 # from wsad_DMT_TEGI06001 import *
 # from wsad_DMT_TXI01301 import *
 # from wsad_DMT_TXI01001 import *
-from EX_wsad_DMT_TMH0071 import *
+# from EX_wsad_DMT_TMH0071 import *
 
+# NOWE
+# from wsad_DMT_TXI00301 import *
+# from wsad_DMT_TXI00501 import *
+# from wsad_DMT_TXI00701 import *
+# from wsad_DMT_TXI00401 import *
+# from wsad_DMT_TXI00601 import *
+# from wsad_DMT_TXI01401 import *
+# from wsad_DMT_TXI01501 import *
+# from wsad_DMT_TXI01501_2 import *
+# from wsad_DMT_TEGI06101 import *
+# from wsad_DMT_TEGI04501 import *
+# from wsad_DMT_TEGI04501_XML import *
+# from wsad_DMT_TEGI04601 import *
+# from wsad_DMT_TEGI01101 import *
+# from wsad_DMT_TXI07501 import *
+# from wsad_DMT_TEGI06001 import *
+from wsad_DMT_TEGI06001_EXT import *
+# from wsad_DMT_TXI01301 import *
+# from wsad_DMT_TXI01301_2 import *
+# from wsad_DMT_TXI01301_3 import *
+# from wsad_DMT_TXI01301_4 import *
+# from wsad_DMT_TXI01301_5 import *
+# from wsad_DMT_TXI01001 import *
+# from wsad_DMT_TXI01001_2 import *
+# from wsad_DMT_TXI01001_3 import *
+# from wsad_DMT_TXI01001_4 import *
+# from wsad_DMT_TXI02101_EXT import *
+# from wsad_DMT_TXI02201_EXT import *
+# from wsad_DMT_TEGI06001_EXT_2 import *
 
 # DLA WSZYSTKICH WSADÓW WYGENERUJ SQL PONIŻSZĄ FUNKCJĄ.
 # JEJ PARAMETRY TO: NAZWA_LISTY_Z_WSADEM, NAZWA_TABLICY_W_BD, NAZWA_LISTY_Z_POLAMI_WYMAGANYMI,
@@ -213,7 +242,37 @@ from EX_wsad_DMT_TMH0071 import *
 # generuj_sql(DMT_TEGI06001, 'XEG06001', DMT_TEGI06001_REQ)
 # generuj_sql(DMT_TXI01301, 'XEG01301', DMT_TXI01301_REQ)
 # generuj_sql(DMT_TXI01001, 'XEG01001', DMT_TXI01001_REQ)
-generuj_sql(DMT_TMH0071, 'XTMH00701', DMT_TMH0071_REQ)
+# generuj_sql(DMT_TMH0071, 'XTMH00701', DMT_TMH0071_REQ)
+
+# NOWE
+# generuj_sql(DMT_TXI00301, 'NAZWA_TABELI', DMT_TXI00301_REQ)
+# generuj_sql(DMT_TXI00501, 'NAZWA_TABELI', DMT_TXI00501_REQ)
+# generuj_sql(DMT_TXI00701, 'NAZWA_TABELI', DMT_TXI00701_REQ)
+# generuj_sql(DMT_TXI00401, 'NAZWA_TABELI', DMT_TXI00401_REQ)
+# generuj_sql(DMT_TXI00601, 'NAZWA_TABELI', DMT_TXI00601_REQ)
+# generuj_sql(DMT_TXI01401, 'NAZWA_TABELI', DMT_TXI01401_REQ)
+# generuj_sql(DMT_TXI01501, 'NAZWA_TABELI', DMT_TXI01501_REQ)
+# generuj_sql(DMT_TXI01501_2, 'NAZWA_TABELI', DMT_TXI01501_2_REQ)
+# generuj_sql(DMT_TEGI06101, 'NAZWA_TABELI', DMT_TEGI06101_REQ)
+# generuj_sql(DMT_TEGI04501, 'NAZWA_TABELI', DMT_TEGI04501_REQ)
+# generuj_sql(DMT_TEGI04501_XML, 'NAZWA_TABELI', DMT_TEGI04501_XML_REQ)
+# generuj_sql(DMT_TEGI04601, 'NAZWA_TABELI', DMT_TEGI04601_REQ)
+# generuj_sql(DMT_TEGI01101, 'NAZWA_TABELI', DMT_TEGI01101_REQ)
+# generuj_sql(DMT_TXI07501, 'NAZWA_TABELI', DMT_TXI07501_REQ)
+# generuj_sql(DMT_TEGI06001, 'NAZWA_TABELI', DMT_TEGI06001_REQ)
+generuj_sql(DMT_TEGI06001_EXT, 'XEG06001', DMT_TEGI06001_EXT_REQ)
+# generuj_sql(DMT_TXI01301, 'NAZWA_TABELI', DMT_TXI01301_REQ)
+# generuj_sql(DMT_TXI01301_2, 'NAZWA_TABELI', DMT_TXI01301_2_REQ)
+# generuj_sql(DMT_TXI01301_3, 'NAZWA_TABELI', DMT_TXI01301_3_REQ)
+# generuj_sql(DMT_TXI01301_4, 'NAZWA_TABELI', DMT_TXI01301_4_REQ)
+# generuj_sql(DMT_TXI01301_5, 'NAZWA_TABELI', DMT_TXI01301_5_REQ)
+# generuj_sql(DMT_TXI01001, 'NAZWA_TABELI', DMT_TXI01001_REQ)
+# generuj_sql(DMT_TXI01001_2, 'NAZWA_TABELI', DMT_TXI01001_2_REQ)
+# generuj_sql(DMT_TXI01001_3, 'NAZWA_TABELI', DMT_TXI01001_3_REQ)
+# generuj_sql(DMT_TXI01001_4, 'NAZWA_TABELI', DMT_TXI01001_4_REQ)
+# generuj_sql(DMT_TXI02101_EXT, 'NAZWA_TABELI', DMT_TXI02101_EXT_REQ)
+# generuj_sql(DMT_TXI02201_EXT, 'NAZWA_TABELI', DMT_TXI02201_EXT_REQ)
+# generuj_sql(DMT_TEGI06001_EXT_2, 'NAZWA_TABELI', DMT_TEGI06001_EXT_2_REQ)
 
 # PO WYGENEROWANIU SQL-i SKOPIUJ CAŁOŚĆ PLIKU SQL WSAD,
 # NP. "SQL wsad XTAHOLD.txt" DO DBVisualizera I URUCHOM.
