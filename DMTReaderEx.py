@@ -1,7 +1,7 @@
 import xlrd
 
 # PODAJ NAZWĘ PLIKU DMT I PLIKU WSADOWEGO SQL
-ExcelFileName = '../DMT002 133.xlsx'
+ExcelFileName = '../DMT052 120.xlsx'
 
 # PO URUCHOMIENIU PROGRAM WYGENERUJE JEDEN WSAD
 # ZE WSZYSTKIMI ZAPYTANIAMI DO WSZYSTKICH ZNALEZIONYCH TABEL EKSPORTOWYCH.
@@ -41,7 +41,7 @@ output_msg = ""
 
 
 def przelec_zakladke(ktora_zakladka):
-    worksheet = workbook.sheet_by_index(ktora_zakladka)
+    worksheet = workbook.sheet_by_index(ktora_zakladka-1)
     num_rows = worksheet.nrows
     zakladka = worksheet.name
 
@@ -157,10 +157,11 @@ def generuj_sql():
 
 
 def read_excel():
-    for i in range(MinZakladka - 1, MaxZakladka):
+    for i in range(MinZakladka, MaxZakladka):
         print("Przetwarzam zakladke nr", i + 1)
         przelec_zakladke(i)
 
 
-read_excel()
+#read_excel()
+przelec_zakladke(2)
 generuj_sql()
