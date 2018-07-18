@@ -157,7 +157,7 @@ def generuj_sql():
 
 
 def read_excel():
-    for i in range(MinZakladka, MaxZakladka):
+    for i in range(MinZakladka, MaxZakladka+1):
         print("Przetwarzam zakladke nr", i + 1)
         przelec_zakladke(i)
 
