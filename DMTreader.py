@@ -132,7 +132,8 @@ def generuj_sql(tabela, nazwa, tabela_req):
                         "\tCOL.CHARACTER_MAXIMUM_LENGTH AS " + str(lista[1]) + "\n" \
                         "FROM INFORMATION_SCHEMA.COLUMNS COL\n" \
                         "WHERE COL.TABLE_NAME = '" + nazwa + "' \n" \
-                        "AND COL.COLUMN_NAME = '" + str(lista[0]) + "';\n\n"
+                        "AND COL.COLUMN_NAME = '" + str(lista[0]) + "'\n" \
+                        "AND COL.TABLE_SCHEMA = '" + DatabaseName + "';\n\n"
 
         if licznik == len(tabela):
             str_to_write += "--Zapytanie o REQ = Y:\nSELECT DISTINCT "
