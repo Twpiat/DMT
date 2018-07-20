@@ -1,7 +1,7 @@
 import xlrd
 
 # PODAJ NAZWĘ PLIKU DMT I PLIKU WSADOWEGO SQL
-ExcelFileName = '../DMT052 120.xlsx'
+ExcelFileName = '../DMT002 136.xlsx'
 
 # PO URUCHOMIENIU PROGRAM WYGENERUJE JEDEN WSAD
 # ZE WSZYSTKIMI ZAPYTANIAMI DO WSZYSTKICH ZNALEZIONYCH TABEL EKSPORTOWYCH.
@@ -9,7 +9,7 @@ ExcelFileName = '../DMT052 120.xlsx'
 output_file = "../EX SQL wsad.txt"
 
 # PODAJ NAZWĘ BAZY DANYCH
-DatabaseName = "ET_ZT8_DEF"
+DatabaseName = "ET_ZT7_DEF"
 
 # PODAJ NR PIERWSZEGO ISTOTNEGO WIERSZA
 # (NR LINII EXCELA)
@@ -54,7 +54,7 @@ def przelec_zakladke(ktora_zakladka):
         try:
             data = worksheet.cell_value(curr_row, ListColumns[0])
         except:
-            print(zakladka, curr_row, curr_col)
+            print(zakladka, curr_row)
 
         if data and data != 'N/D':
 
@@ -162,6 +162,6 @@ def read_excel():
         przelec_zakladke(i)
 
 
-#read_excel()
-przelec_zakladke(2)
+read_excel()
+#przelec_zakladke(2)
 generuj_sql()
